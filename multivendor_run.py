@@ -46,6 +46,7 @@ def run_script():
                     # Based on user selection, run the script in the vendor_backups folder. The passed variables are hosts, username, password, and optional secret.
                     if vendor == "cisco_ios":
                         cisco_ios.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3], list_of_rows[rows][4])
+                        cisco_ios.collect_runtime_info(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3], list_of_rows[rows][4])
                     elif vendor == "cisco_asa":
                         cisco_asa.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3], list_of_rows[rows][4])
                     elif vendor == "juniper":
