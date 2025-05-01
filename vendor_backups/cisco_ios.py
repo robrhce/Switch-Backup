@@ -37,3 +37,48 @@ def backup(host, username, password, enable_secret):
     # For the GUI
     global gui_filename_output
     gui_filename_output = fileName
+
+
+
+def collect_runtime_info(host, username, password, enable_secret):
+    cisco_ios = {
+        'device_type': 'cisco_ios',
+        'host': host,
+        'username': username,
+        'password': password,
+        'secret': enable_secret,
+    }
+    net_connect = ConnectHandler(**cisco_ios)
+    net_connect.enable()
+
+    hostname = net_connect.find_prompt().replace('#','').replace('>','')
+    if not hostname:
+        hostname = net_connect.send_command("show run | i hostname").split()[1]
+
+    now = datetime.now()
+    dt_string = now.strftime("%Y-%m-%d_%H-%M")
+
+    commands = {
+        "cdp_neighbors": "show cdp neighbors",
+        "cdp_detail": "show cdp neighbors detail",
+        "lldp_neighbors": "show lldp neighbors",
+        "mac_table": "show mac address-table",
+        "interface_status": "show interface status",
+        "interfaces": "show interfaces"
+    }
+
+    # Optional: ensure output dir exists
+    os.makedirs("runtime-info", exist_ok=True)
+
+    output_lines = []
+    for label, cmd in commands.items():
+        output_lines.append(f"\n\n--- {cmd} ---\n")
+        output_lines.append(net_connect.send_command(cmd))
+
+    # Save to file
+    fileName = f"{hostname}_runtime_{dt_string}.txt"
+    with open(os.path.join("runtime-info", fileName), "w") as f:
+        f.write("\n".join(output_lines))
+
+    logger.info(f"Runtime info collected to {fileName}")
+    return fileName
