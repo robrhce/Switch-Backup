@@ -1,8 +1,5 @@
 FROM alpine:latest
 
-# Set proxy if needed
-ENV HTTPS_PROXY="http://10.18.241.11:3128"
-
 # Install dependencies
 RUN apk update && apk add --no-cache python3 py3-pip git nano busybox-suid bash
 
