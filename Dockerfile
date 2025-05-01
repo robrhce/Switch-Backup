@@ -15,6 +15,10 @@ WORKDIR /home
 # Clone your backup script repo
 RUN git clone https://github.com/robrhce/Switch-Backup.git
 
+# In case its cached
+WORKDIR /home/Switch-Backup
+RUN git pull
+
 # Add a cron job script in /etc/periodic/daily
 RUN cp /home/Switch-Backup/archive.sh /etc/periodic/daily/archive.sh
 
