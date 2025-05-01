@@ -14,6 +14,7 @@ WORKDIR /home
 
 RUN mkdir -p /var/log
 
+ARG cache_bust=1
 # Clone your backup script repo
 RUN git clone https://github.com/robrhce/Switch-Backup.git
 
