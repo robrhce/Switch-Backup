@@ -14,6 +14,6 @@ mkdir -p "$ARCHIVE_DIR"
 
 for f in "$LOCAL_DIR"/*; do
     [ -f "$f" ] || continue
-    echo smbclient "$SMB_SHARE" -U "${SMB_USER}%${SMB_PASS}" -c "put $f" && \
+    echo smbclient "\"$SMB_SHARE\"" -U "\"${SMB_USER}%${SMB_PASS}\"" -c "put \"$f\"" && \
     mv "$f" "$ARCHIVE_DIR/"
 done
