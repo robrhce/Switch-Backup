@@ -16,7 +16,7 @@ logger.setLevel(logging.DEBUG)
 if not logger.hasHandlers():
     loki_url = os.environ.get("LOKI_URL", "").strip()
 
-    if has_loki and loki_url:
+    if has_loki and loki_url and false:
         # Create and attach Loki handler
         custom_handler = LokiLoggerHandler(
             url=loki_url,
