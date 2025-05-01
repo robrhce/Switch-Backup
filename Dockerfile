@@ -12,6 +12,8 @@ RUN pip install --break-system-packages ping3 netmiko loki-logger-handler reques
 # Set working directory
 WORKDIR /home
 
+RUN mkdir -p /var/log
+
 # Clone your backup script repo
 RUN git clone https://github.com/robrhce/Switch-Backup.git
 
@@ -19,13 +21,6 @@ RUN git clone https://github.com/robrhce/Switch-Backup.git
 WORKDIR /home/Switch-Backup
 RUN git pull
 
-# Add a cron job script in /etc/periodic/daily
-RUN cp /home/Switch-Backup/archive.sh /etc/periodic/daily/archive.sh
+RUN chmod +x /home/Switch-Backup/archive.sh
 
-RUN chmod +x /etc/periodic/daily/archive.sh
-
-# Create log directory
-RUN mkdir -p /var/log
-
-# Start cron in foreground (default CMD)
-CMD ["crond", "-f"]
+CMD ["/home/Switch-Backup/archive.sh"]
