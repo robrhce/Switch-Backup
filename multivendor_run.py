@@ -42,21 +42,24 @@ def run_script():
                 #downDeviceOutput.write(str(ip) + "\n")
                 logger.info(str(ip) + " is down!")
             else:
-                # Based on user selection, run the script in the vendor_backups folder. The passed variables are hosts, username, password, and optional secret.
-                if vendor == "cisco_ios":
-                    cisco_ios.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3], list_of_rows[rows][4])
-                elif vendor == "cisco_asa":
-                    cisco_asa.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3], list_of_rows[rows][4])
-                elif vendor == "juniper":
-                    juniper.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
-                elif vendor == "vyos":
-                    vyos.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
-                elif vendor == "huawei":
-                    huawei.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
-                elif vendor == "fortinet":
-                    fortinet.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
-                elif vendor == "mikrotik":
-                    microtik.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
+                try:
+                    # Based on user selection, run the script in the vendor_backups folder. The passed variables are hosts, username, password, and optional secret.
+                    if vendor == "cisco_ios":
+                        cisco_ios.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3], list_of_rows[rows][4])
+                    elif vendor == "cisco_asa":
+                        cisco_asa.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3], list_of_rows[rows][4])
+                    elif vendor == "juniper":
+                        juniper.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
+                    elif vendor == "vyos":
+                        vyos.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
+                    elif vendor == "huawei":
+                        huawei.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
+                    elif vendor == "fortinet":
+                        fortinet.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
+                    elif vendor == "mikrotik":
+                        microtik.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
+                except Exception as e:
+                    logger.exception(f"Backup failed for device {list_of_rows[rows][0]} (vendor: {vendor})")
 
 # Asks the user what option they are going to use.
 logger.info("running over the backup_hosts.csv")
