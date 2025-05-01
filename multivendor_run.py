@@ -35,9 +35,9 @@ def run_script():
             # Unsuccessful pings go into a down_devices file.
             ip_ping = ping(ip)
             if ip_ping == None:
-                fileName = "down_devices_" + dt_string + ".txt"
-                downDeviceOutput = open("backup-config/" + fileName, "a")
-                downDeviceOutput.write(str(ip) + "\n")
+                #fileName = "down_devices_" + dt_string + ".txt"
+                #downDeviceOutput = open("backup-config/" + fileName, "a")
+                #downDeviceOutput.write(str(ip) + "\n")
                 print(str(ip) + " is down!")
             else:
                 # Based on user selection, run the script in the vendor_backups folder. The passed variables are hosts, username, password, and optional secret.
