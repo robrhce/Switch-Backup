@@ -13,9 +13,11 @@ csv_name = "backup_hosts.csv"
 if not os.path.exists('backup-config'):
     os.makedirs('backup-config')
 
-# Current time and formats it to the North American time of Month, Day, and Year.
+# Set to user's current locale (e.g., 'en_AU', 'fr_FR', etc.)
+locale.setlocale(locale.LC_TIME, '')  # Empty string means "use current system locale"
+
 now = datetime.now()
-dt_string = now.strftime("%m-%d-%Y_%H-%M")
+dt_string = now.strftime("%x_%H-%M")  # %x = locale-appropriate date format
 
 # Main function.
 def run_script(user_selection):
@@ -27,6 +29,7 @@ def run_script(user_selection):
         while rows >= 2:
             rows = rows - 1
             ip = list_of_rows[rows][0]
+            vendor = list_of_rows[rows][1].lower()
             # Pings the hosts in the CSV file, successful pings move onto the else statement.
             # Unsuccessful pings go into a down_devices file.
             ip_ping = ping(ip)
@@ -37,29 +40,22 @@ def run_script(user_selection):
                 print(str(ip) + " is down!")
             else:
                 # Based on user selection, run the script in the vendor_backups folder. The passed variables are hosts, username, password, and optional secret.
-                if user_selection == "1":
-                    cisco_ios.backup(list_of_rows[rows][0], list_of_rows[rows][1], list_of_rows[rows][2], list_of_rows[rows][3])
-                elif user_selection == "2":
-                    cisco_asa.backup(list_of_rows[rows][0], list_of_rows[rows][1], list_of_rows[rows][2], list_of_rows[rows][3])
-                elif user_selection == "3":
-                    juniper.backup(list_of_rows[rows][0], list_of_rows[rows][1], list_of_rows[rows][2])
-                elif user_selection == "4":
-                    vyos.backup(list_of_rows[rows][0], list_of_rows[rows][1], list_of_rows[rows][2])
-                elif user_selection == "5":
-                    huawei.backup(list_of_rows[rows][0], list_of_rows[rows][1], list_of_rows[rows][2])
-                elif user_selection == "6":
-                    fortinet.backup(list_of_rows[rows][0], list_of_rows[rows][1], list_of_rows[rows][2])
-                elif user_selection == "7":
-                    microtik.backup(list_of_rows[rows][0], list_of_rows[rows][1], list_of_rows[rows][2])
+                if vendor == "cisco_ios":
+                    cisco_ios.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3], list_of_rows[rows][4])
+                elif vendor == "cisco_asa":
+                    cisco_asa.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3], list_of_rows[rows][4])
+                elif vendor == "juniper":
+                    juniper.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
+                elif vendor == "vyos":
+                    vyos.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
+                elif vendor == "huawei":
+                    huawei.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
+                elif vendor == "fortinet":
+                    fortinet.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
+                elif vendor == "mikrotik":
+                    microtik.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
 
 # Asks the user what option they are going to use.
-print("\n1. Backup Cisco IOS devices.")
-print("2. Backup Cisco ASA devices.")
-print("3. Backup Juniper devices.")
-print("4. Backup VyOS routers.")
-print("5. Backup Huawei boxes.")
-print("6. Backup Fortinet devices.")
-print("7. Backup MicroTik devices.\n")
-user_selection = input("Please pick an option: ")
+print("running over the backup_hosts.csv")
 # Pass the users choice to the main function.
-run_script(user_selection)
+run_script()

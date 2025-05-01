@@ -1,0 +1,5 @@
+IP,Vendor,Username,Password,Enable_Secret
+10.0.0.1,cisco_ios,username,password,secret
+10.0.0.2,fortinet,username,password
+10.0.0.3,cisco_asa,username,password,secret
+10.0.0.4,mikrotik,username,password
