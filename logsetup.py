@@ -15,8 +15,8 @@ logger.setLevel(logging.DEBUG)
 # Avoid adding duplicate handlers if this file is imported multiple times
 if not logger.hasHandlers():
     loki_url = os.environ.get("LOKI_URL", "").strip()
-
-    if has_loki and loki_url and false:
+    print loki_url
+    if has_loki and loki_url and False:
         # Create and attach Loki handler
         custom_handler = LokiLoggerHandler(
             url=loki_url,
