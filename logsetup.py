@@ -28,7 +28,7 @@ if not logger.hasHandlers():
         logger.debug("Loki handler attached", extra={'setup': 'true'})
     else:
 
-        print(has_loki + " " + loki_url)
+        print(f"{has_loki} {loki_url}")
         # Fallback: log to stdout
         stream_handler = logging.StreamHandler(sys.stdout)
         formatter = logging.Formatter("%(asctime)s %(levelname)s %(message)s")
