@@ -4,9 +4,9 @@
 python3 /home/Switch-Backup/multivendor_run.py
 
 # SMB share details
-SMB_SHARE="//192.168.1.100/backups"
-SMB_USER="admin"
-SMB_PASS="password"
+#SMB_SHARE="//192.168.1.100/backups"
+#SMB_USER="admin"
+#SMB_PASS="password"
 LOCAL_DIR="/home/Switch-Backup/backup-config"
 ARCHIVE_DIR="/home/Switch-Backup/archive"
 
