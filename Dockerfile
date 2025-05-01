@@ -4,7 +4,7 @@ FROM alpine:latest
 ENV HTTPS_PROXY="http://..."
 
 # Install dependencies
-RUN apk update && apk add --no-cache python3 py3-pip git nano busybox-suid bash
+RUN apk update && apk add --no-cache python3 py3-pip git nano busybox-suid bash samba-client
 
 # Install Python packages
 RUN pip install --break-system-packages ping3 netmiko loki-logger-handler requests
@@ -16,8 +16,9 @@ WORKDIR /home
 RUN git clone https://github.com/robrhce/Switch-Backup.git
 
 # Add a cron job script in /etc/periodic/daily
-RUN printf '#!/bin/sh \n cd /home/Switch-Backup \n python3 /home/Switch-Backup/multivendor_run.py \n' > /etc/periodic/daily/switch-backup \
-    && chmod +x /etc/periodic/daily/switch-backup
+RUN cp /home/Switch-Backup/archive.sh /etc/periodic/daily/archive.sh
+
+RUN chmod +x /etc/periodic/daily/archive.sh
 
 # Create log directory
 RUN mkdir -p /var/log
