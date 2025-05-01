@@ -5,6 +5,7 @@ from netmiko import ConnectHandler
 from ping3 import ping, verbose_ping
 from vendor_backups import cisco_ios,cisco_asa,fortinet,huawei,juniper,microtik,vyos
 import os
+import locale
 
 # Specified CSV file for the script to grab the hosts from.
 csv_name = "backup_hosts.csv"
