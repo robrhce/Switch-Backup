@@ -7,6 +7,8 @@ from vendor_backups import cisco_ios,cisco_asa,fortinet,huawei,juniper,microtik,
 import os
 import locale
 
+from logsetup import logger
+
 # Specified CSV file for the script to grab the hosts from.
 csv_name = "backup_hosts.csv"
 
@@ -38,7 +40,7 @@ def run_script():
                 #fileName = "down_devices_" + dt_string + ".txt"
                 #downDeviceOutput = open("backup-config/" + fileName, "a")
                 #downDeviceOutput.write(str(ip) + "\n")
-                print(str(ip) + " is down!")
+                logger.info(str(ip) + " is down!")
             else:
                 # Based on user selection, run the script in the vendor_backups folder. The passed variables are hosts, username, password, and optional secret.
                 if vendor == "cisco_ios":
@@ -57,6 +59,6 @@ def run_script():
                     microtik.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
 
 # Asks the user what option they are going to use.
-print("running over the backup_hosts.csv")
+logger.info("running over the backup_hosts.csv")
 # Pass the users choice to the main function.
 run_script()

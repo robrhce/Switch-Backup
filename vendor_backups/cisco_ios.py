@@ -1,5 +1,6 @@
 from netmiko import ConnectHandler
 from datetime import datetime
+from logsetup import logger
 
 # Current time and formats it to the North American time of Month, Day, and Year.
 now = datetime.now()
@@ -32,7 +33,7 @@ def backup(host, username, password, enable_secret):
     # Creates the text file in the backup-config folder with the special name, and writes to it.
     backupFile = open("backup-config/" + fileName + ".txt", "w+")
     backupFile.write(output)
-    print("Outputted to " + fileName + ".txt")
+    logger.info("Outputted to " + fileName + ".txt")
     # For the GUI
     global gui_filename_output
     gui_filename_output = fileName
