@@ -20,7 +20,7 @@ if not logger.hasHandlers():
         # Create and attach Loki handler
         custom_handler = LokiLoggerHandler(
             url=loki_url,
-            labels={"application": "switch-backup"},
+            labels={"app": "switch-backup"},
             label_keys={},
             timeout=10,
         )
