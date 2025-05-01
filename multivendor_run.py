@@ -21,7 +21,7 @@ now = datetime.now()
 dt_string = now.strftime("%x_%H-%M")  # %x = locale-appropriate date format
 
 # Main function.
-def run_script(user_selection):
+def run_script():
     # Imports the CSV file specified in the csv_name variable.
     with open(csv_name, 'r') as read_obj:
         csv_reader = reader(read_obj)
