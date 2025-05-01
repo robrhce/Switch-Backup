@@ -67,17 +67,16 @@ def collect_runtime_info(host, username, password, enable_secret):
         "interfaces": "show interfaces"
     }
 
-    # Optional: ensure output dir exists
-    os.makedirs("runtime-info", exist_ok=True)
-
     output_lines = []
     for label, cmd in commands.items():
         output_lines.append(f"\n\n--- {cmd} ---\n")
         output_lines.append(net_connect.send_command(cmd))
 
     # Save to file
+
     fileName = f"{hostname}_runtime_{dt_string}.txt"
-    with open(os.path.join("runtime-info", fileName), "w") as f:
+
+    with open("backup-config/" + fileName + ".txt", "w+") as f:
         f.write("\n".join(output_lines))
 
     logger.info(f"Runtime info collected to {fileName}")
