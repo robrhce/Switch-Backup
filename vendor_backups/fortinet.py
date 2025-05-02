@@ -80,9 +80,8 @@ def collect_runtime_info(host, username, password):
         output_lines.append(net_connect.send_command(cmd))
 
     fileName = f"{hostname}_runtime_{dt_string}.txt"
-    output_path = os.path.join("backup-config", fileName)
-
-    with open(output_path, "w+") as f:
+    
+    with open("backup-config/" + fileName, "w+") as f:
         f.write("\n".join(output_lines))
 
     logger.info(f"Runtime info collected to {fileName}")
