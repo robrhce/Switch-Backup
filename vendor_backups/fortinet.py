@@ -19,6 +19,7 @@ def backup(host, username, password):
 
     # Creates the file name, which is the hostname, and the date and time.
     hostname = net_connect.find_prompt().replace('#','').replace('>','')
+    dt_string = get_safe_dt_string
     if not hostname:
         hostname = host
         fileName = host + "_" + dt_string
