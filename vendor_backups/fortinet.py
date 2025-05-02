@@ -68,7 +68,8 @@ def collect_runtime_info(host, username, password):
     for label, cmd in commands.items():
         output_lines.append(f"\n\n--- {cmd} ---\n")
         output_lines.append(net_connect.send_command(cmd))
-
+    
+    dt_string = get_safe_dt_string()
     fileName = f"{hostname}_runtime_{dt_string}.txt"
     
     with open("backup-config/" + fileName, "w+") as f:
