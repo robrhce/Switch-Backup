@@ -5,7 +5,7 @@ from netmiko import ConnectHandler
 from ping3 import ping, verbose_ping
 from vendor_backups import cisco_ios,cisco_asa,fortinet,huawei,juniper,microtik,vyos
 import os
-import dt_string
+from dt_string import get_safe_dt_string
 
 from logsetup import logger
 

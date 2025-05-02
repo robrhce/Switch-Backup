@@ -1,7 +1,7 @@
 from netmiko import ConnectHandler
 from datetime import datetime
 from logsetup import logger
-import dt_string
+from dt_string import get_safe_dt_string
 
 # Gives us the information we need to connect to Huawei devices.
 def backup(host, username, password):

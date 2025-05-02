@@ -9,7 +9,7 @@ from tkinter.ttk import *
 from tkinter.filedialog import *
 from tkinter import messagebox
 
-import dt_string
+from dt_string import get_safe_dt_string
 
 # Initializes Tkinter
 root = Tk()

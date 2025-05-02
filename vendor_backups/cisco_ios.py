@@ -1,7 +1,7 @@
 from netmiko import ConnectHandler
 from datetime import datetime
 from logsetup import logger
-import locale
+from dt_string import get_safe_dt_string
 
 # Gives us the information we need to connect to Cisco devices.
 def backup(host, username, password, enable_secret):
