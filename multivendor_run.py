@@ -57,6 +57,7 @@ def run_script():
                         huawei.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
                     elif vendor == "fortinet":
                         fortinet.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
+                        fortinet.collect_runtime_info(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
                     elif vendor == "mikrotik":
                         microtik.backup(list_of_rows[rows][0], list_of_rows[rows][2], list_of_rows[rows][3])
                 except Exception as e:

@@ -55,8 +55,12 @@ def collect_runtime_info(host, username, password, enable_secret):
     if not hostname:
         hostname = net_connect.send_command("show run | i hostname").split()[1]
 
+    # Set to user's current locale (e.g., 'en_AU', 'fr_FR', etc.)
+    locale.setlocale(locale.LC_TIME, '')  # Empty string means "use current system locale"
+
     now = datetime.now()
-    dt_string = now.strftime("%Y-%m-%d_%H-%M")
+    dt_string = now.strftime("%x_%H-%M")  # %x = locale-appropriate date format
+
 
     commands = {
         "version": "show version",
