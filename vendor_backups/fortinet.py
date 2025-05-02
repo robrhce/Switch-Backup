@@ -1,6 +1,7 @@
 from netmiko import ConnectHandler
 from datetime import datetime
 from logsetup import logger
+import locale
 
 # Current time and formats it to the North American time of Month, Day, and Year.
 now = datetime.now()
