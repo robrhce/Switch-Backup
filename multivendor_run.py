@@ -5,7 +5,7 @@ from netmiko import ConnectHandler
 from ping3 import ping, verbose_ping
 from vendor_backups import cisco_ios,cisco_asa,fortinet,huawei,juniper,microtik,vyos
 import os
-import locale
+import dt_string
 
 from logsetup import logger
 
@@ -19,8 +19,7 @@ if not os.path.exists('backup-config'):
 # Set to user's current locale (e.g., 'en_AU', 'fr_FR', etc.)
 locale.setlocale(locale.LC_TIME, '')  # Empty string means "use current system locale"
 
-now = datetime.now()
-dt_string = now.strftime("%x_%H-%M")  # %x = locale-appropriate date format
+
 
 # Main function.
 def run_script():

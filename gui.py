@@ -9,6 +9,8 @@ from tkinter.ttk import *
 from tkinter.filedialog import *
 from tkinter import messagebox
 
+import dt_string
+
 # Initializes Tkinter
 root = Tk()
 root.title("Backup Configurator")
@@ -19,9 +21,7 @@ tk_frame.pack(expand=True)
 if not os.path.exists('backup-config'):
     os.makedirs('backup-config')
 
-# Current time and formats it to the North American time of Month, Day, and Year.
-now = datetime.now()
-dt_string = now.strftime("%m-%d-%Y_%H-%M")
+
 
 # Popup window that tells that the backup worked
 def backup_completion_popup(backup_file_name):

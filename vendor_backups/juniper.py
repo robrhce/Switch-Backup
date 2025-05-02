@@ -1,10 +1,7 @@
 from netmiko import ConnectHandler
 from datetime import datetime
 from logsetup import logger
-
-# Current time and formats it to the North American time of Month, Day, and Year.
-now = datetime.now()
-dt_string = now.strftime("%m-%d-%Y_%H-%M")
+import dt_string
 
 # Gives us the information we need to connect to Juniper devices.
 def backup(host, username, password,):

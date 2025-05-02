@@ -1,11 +1,7 @@
 from netmiko import ConnectHandler
 from datetime import datetime
 from logsetup import logger
-import locale
-
-# Current time and formats it to the North American time of Month, Day, and Year.
-now = datetime.now()
-dt_string = now.strftime("%m-%d-%Y_%H-%M")
+import dt_string
 
 # Gives us the information we need to connect to Fortinet devices.
 def backup(host, username, password):
@@ -55,13 +51,6 @@ def collect_runtime_info(host, username, password):
     hostname = net_connect.find_prompt().replace('#', '').replace('>', '')
     if not hostname:
         hostname = host
-
-    # Set to user's current locale (e.g., 'en_AU', 'fr_FR', etc.)
-    locale.setlocale(locale.LC_TIME, '')  # Empty string means "use current system locale"
-
-    now = datetime.now()
-    dt_string = now.strftime("%x_%H-%M")  # %x = locale-appropriate date format
-
 
     commands = {
         "version": "get system status",                                # Includes time and uptime
