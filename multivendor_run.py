@@ -16,11 +16,6 @@ csv_name = "backup_hosts.csv"
 if not os.path.exists('backup-config'):
     os.makedirs('backup-config')
 
-# Set to user's current locale (e.g., 'en_AU', 'fr_FR', etc.)
-locale.setlocale(locale.LC_TIME, '')  # Empty string means "use current system locale"
-
-
-
 # Main function.
 def run_script():
     # Imports the CSV file specified in the csv_name variable.
