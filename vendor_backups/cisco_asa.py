@@ -25,7 +25,7 @@ def backup(host, username, password, enable_secret):
         hostname = hostname[1]
     # Gets the running configuration.
     output = net_connect.send_command("show run")
-
+    dt_string = get_safe_dt_string()
     # Creates the file name, which is the hostname, and the date and time.
     fileName = hostname + "_" + dt_string
     # Creates the text file in the backup-config folder with the special name, and writes to it.

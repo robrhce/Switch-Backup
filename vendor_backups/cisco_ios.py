@@ -25,6 +25,7 @@ def backup(host, username, password, enable_secret):
     # Gets the running configuration.
     output = net_connect.send_command("show run")
     
+    dt_string = get_safe_dt_string()
     # Creates the file name, which is the hostname, and the date and time.
     fileName = hostname + "_" + dt_string
     # Creates the text file in the backup-config folder with the special name, and writes to it.
@@ -73,7 +74,7 @@ def collect_runtime_info(host, username, password, enable_secret):
         output_lines.append(net_connect.send_command(cmd))
 
     # Save to file
-
+    dt_string = get_safe_dt_string()
     fileName = f"{hostname}_runtime_{dt_string}.txt"
 
     with open("backup-config/" + fileName + ".txt", "w+") as f:

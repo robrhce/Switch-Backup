@@ -31,6 +31,7 @@ def run_script():
             # Unsuccessful pings go into a down_devices file.
             ip_ping = ping(ip)
             if ip_ping == None:
+                #dt_string = get_safe_dt_string()
                 #fileName = "down_devices_" + dt_string + ".txt"
                 #downDeviceOutput = open("backup-config/" + fileName, "a")
                 #downDeviceOutput.write(str(ip) + "\n")

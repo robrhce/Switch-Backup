@@ -23,6 +23,7 @@ def backup(host, username, password,):
         hostname = hostname.split()
         hostname = hostname[2]
     # Creates the file name, which is the hostname, and the date and time.
+    dt_string = get_safe_dt_string()
     fileName = hostname + "_" + dt_string
     # Creates the text file in the backup-config folder with the special name, and writes to it.
     backupFile = open("backup-config/" + fileName + ".txt", "w+")

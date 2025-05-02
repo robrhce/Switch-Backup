@@ -34,6 +34,9 @@ def down_host_popup(down_host_ip):
 # Main function.
 def run_script(user_selection):
     file_path = askopenfilename(title="Open CSV File", filetypes=[("CSV files", "*.csv")])
+
+    dt_string = get_safe_dt_string()
+
     if file_path:
         with open(file_path, 'r') as read_obj:
             csv_reader = reader(read_obj)
