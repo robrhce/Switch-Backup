@@ -65,7 +65,10 @@ def collect_runtime_info(host, username, password, enable_secret):
         "mac_table": "show mac address-table",
         "arp": "show arp",
         "interface_status": "show interface status",
-        "interfaces": "show interfaces"
+        "interfaces": "show interfaces",
+        "dlr":"show dlr ring",
+        "rep":"show rep topology",
+        "rep_detail":"show rep topology detail"
     }
 
     output_lines = []
